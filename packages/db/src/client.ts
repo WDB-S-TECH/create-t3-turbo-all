@@ -8,6 +8,7 @@ import * as schema from "./schema";
 export const env = createEnv({
   server: {
     POSTGRES_URL: z.string().url(),
+    TABLE_PREFIX: z.string().optional(),
   },
   // eslint-disable-next-line no-restricted-properties
   runtimeEnv: process.env,

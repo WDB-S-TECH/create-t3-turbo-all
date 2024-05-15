@@ -10,5 +10,5 @@ export default {
   out: "./migrations",
   dialect: "postgresql",
   dbCredentials: { url: env.POSTGRES_URL },
-  tablesFilter: ["t3turbo_*"],
+  tablesFilter: [`${env.TABLE_PREFIX ?? "drizzle_"}*`],
 } satisfies Config;

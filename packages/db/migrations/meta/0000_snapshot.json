@@ -1,5 +1,5 @@
 {
-  "id": "cdc5fe6f-b85f-4925-84bb-e550ff6f1f2a",
+  "id": "5dad1d2b-9066-440d-b93d-106c082baaf3",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "6",
   "dialect": "postgresql",
@@ -20,8 +20,8 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "public.t3turbo_profile": {
-      "name": "t3turbo_profile",
+    "public.undefinedprofile": {
+      "name": "undefinedprofile",
       "schema": "",
       "columns": {
         "id": {
@@ -51,13 +51,17 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "t3turbo_profile_id_users_id_fk": {
-          "name": "t3turbo_profile_id_users_id_fk",
-          "tableFrom": "t3turbo_profile",
+        "undefinedprofile_id_users_id_fk": {
+          "name": "undefinedprofile_id_users_id_fk",
+          "tableFrom": "undefinedprofile",
           "tableTo": "users",
           "schemaTo": "auth",
-          "columnsFrom": ["id"],
-          "columnsTo": ["id"],
+          "columnsFrom": [
+            "id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -65,8 +69,8 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "public.t3turbo_post": {
-      "name": "t3turbo_post",
+    "public.undefinedpost": {
+      "name": "undefinedpost",
       "schema": "",
       "columns": {
         "id": {
@@ -110,12 +114,16 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "t3turbo_post_author_id_t3turbo_profile_id_fk": {
-          "name": "t3turbo_post_author_id_t3turbo_profile_id_fk",
-          "tableFrom": "t3turbo_post",
-          "tableTo": "t3turbo_profile",
-          "columnsFrom": ["author_id"],
-          "columnsTo": ["id"],
+        "undefinedpost_author_id_undefinedprofile_id_fk": {
+          "name": "undefinedpost_author_id_undefinedprofile_id_fk",
+          "tableFrom": "undefinedpost",
+          "tableTo": "undefinedprofile",
+          "columnsFrom": [
+            "author_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
           "onDelete": "no action",
           "onUpdate": "no action"
         }

@@ -28,6 +28,7 @@ import { db } from "@acme/db/client";
 export const createTRPCContext = async (opts: {
   headers: Headers;
   supabase: SupabaseClient;
+  supabaseAdmin: SupabaseClient;
 }) => {
   const supabase = opts.supabase;
 
@@ -45,6 +46,7 @@ export const createTRPCContext = async (opts: {
   return {
     user: user.data.user,
     db,
+    supabaseAdmin: opts.supabaseAdmin,
   };
 };
 
@@ -109,6 +111,22 @@ export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
     ctx: {
       // infers the `user` as non-nullable
       user: ctx.user,
+    },
+  });
+});
+
+/** 
+ * Supabase Admin Procedure
+ */
+export const adminProcedure = t.procedure.use(({ ctx, next }) => {
+  if (!ctx.user?.id) {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
+  return next({
+    ctx: {
+      // infers the `user` as non-nullable
+      user: ctx.user,
+      supabaseAdmin: ctx.supabaseAdmin,
     },
   });
 });

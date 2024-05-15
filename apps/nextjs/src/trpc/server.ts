@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 
 import { createCaller, createTRPCContext } from "@acme/api";
 
-import { createClient } from "~/utils/supabase/server";
+import { createClient, createAdminClient } from "~/utils/supabase/server";
 
 /**
  * This wraps the `createTRPCContext` helper and provides the required context for the tRPC API when
@@ -14,9 +14,11 @@ const createContext = cache(async () => {
   heads.set("x-trpc-source", "rsc");
 
   const supabase = createClient();
+  const supabaseAdmin = createAdminClient();
 
   return createTRPCContext({
     supabase,
+    supabaseAdmin,
     headers: heads,
   });
 });

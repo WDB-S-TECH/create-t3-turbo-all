@@ -2,14 +2,14 @@ CREATE TABLE IF NOT EXISTS "auth"."users" (
 	"id" uuid PRIMARY KEY NOT NULL
 );
 --> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "t3turbo_profile" (
+CREATE TABLE IF NOT EXISTS "undefinedprofile" (
 	"id" uuid PRIMARY KEY NOT NULL,
 	"name" varchar(256) NOT NULL,
 	"image" varchar(256),
 	"email" varchar(256)
 );
 --> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "t3turbo_post" (
+CREATE TABLE IF NOT EXISTS "undefinedpost" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"name" varchar(256) NOT NULL,
 	"content" text NOT NULL,
@@ -19,13 +19,13 @@ CREATE TABLE IF NOT EXISTS "t3turbo_post" (
 );
 --> statement-breakpoint
 DO $$ BEGIN
- ALTER TABLE "t3turbo_profile" ADD CONSTRAINT "t3turbo_profile_id_users_id_fk" FOREIGN KEY ("id") REFERENCES "auth"."users"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "undefinedprofile" ADD CONSTRAINT "undefinedprofile_id_users_id_fk" FOREIGN KEY ("id") REFERENCES "auth"."users"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 --> statement-breakpoint
 DO $$ BEGIN
- ALTER TABLE "t3turbo_post" ADD CONSTRAINT "t3turbo_post_author_id_t3turbo_profile_id_fk" FOREIGN KEY ("author_id") REFERENCES "public"."t3turbo_profile"("id") ON DELETE no action ON UPDATE no action;
+ ALTER TABLE "undefinedpost" ADD CONSTRAINT "undefinedpost_author_id_undefinedprofile_id_fk" FOREIGN KEY ("author_id") REFERENCES "public"."undefinedprofile"("id") ON DELETE no action ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
